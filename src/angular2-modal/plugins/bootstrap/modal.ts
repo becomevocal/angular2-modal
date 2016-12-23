@@ -61,10 +61,10 @@ export class Modal extends Modal_ {
     if (dialogRef.inElement) {
       backdrop.setStyle('position', 'absolute');
     }
-    backdrop.addClass('modal-backdrop fade', true);
+    backdrop.addClass('modal-background fade', true);
 
-    backdrop.addClass('in');
-    container.addClass('in');
+    backdrop.addClass('in is-active');
+    container.addClass('in is-active');
 
     if (containerRef.location.nativeElement) {
       containerRef.location.nativeElement.focus();
@@ -72,8 +72,8 @@ export class Modal extends Modal_ {
 
     overlay.beforeDestroy(() => {
       const completer = new PromiseCompleter<void>();
-      backdrop.removeClass('in');
-      container.removeClass('in');
+      backdrop.removeClass('in is-active');
+      container.removeClass('in is-active');
 
       backdrop.myAnimationEnd$()
         .combineLatest(container.myAnimationEnd$(), (s1, s2) => [s1,s2] )
